@@ -1,0 +1,7 @@
+su
+123
+apt-get update
+apt-get upgrade
+apt-get install make
+apt-get install docker.io
+apt-get install docker-compose
