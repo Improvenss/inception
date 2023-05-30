@@ -5,3 +5,18 @@ apt-get upgrade
 apt-get install make
 apt-get install docker.io
 apt-get install docker-compose
+apt install apache2
+apt-get install vim
+hostname -I
+hostname -I | awk '{print $2}'
+cd /etc/apache2/
+touch hosts
+vim hosts
+	127.0.0.1 localhost
+	127.0.0.1 gsever_inception.42.fr
+	127.0.1.1 <whoami_command> -> gorkem
+systemctl status apache2
+systemctl status apache2.service
+systemctl start apache2
+systemctl stop apache2
+systemctl status ssh
