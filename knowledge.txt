@@ -56,4 +56,5 @@ Sample commands
 	docker run -d -t --name helloImCentos centos
 	docker exec -it helloImCentos bash
 	docker inspect helloImCentos
+	netstat -an | grep LISTEN
 }

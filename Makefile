@@ -5,8 +5,8 @@
 #                                                     +:+ +:+         +:+      #
 #    By: gsever <gsever@student.42kocaeli.com.tr    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2023/05/10 16:29:25 by gsever            #+#    #+#              #
-#    Updated: 2023/05/23 16:57:40 by gsever           ###   ########.fr        #
+#    Created: 2023/05/30 08:37:05 by gsever            #+#    #+#              #
+#    Updated: 2023/05/31 18:13:29 by gsever           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -51,27 +51,47 @@ else ifeq ($(UNAME), Darwin)
 endif
 # You can use --> man sysctl -> shell: sysctl -a | grep "hw.ncpu"
 
-.PHONY: all clean fclean re
+.PHONY: all build up clean fclean re info
 
 all: build up
 	@$(MAKE) build up -j $(NUMPROC) --no-print-directory
 
 build:
-	@printf "%-57b %b" "$(GREEN)BUILDING CONTAINER IMAGES$(X)\n"
+	@printf "%-57b %b" "$(GREEN)BUILDING CONTAINER IMAGES 'build'$(X)\n"
 	docker-compose -f ./srcs/docker-compose.yml build
 	@echo $(OS) Builded with $(NUMPROC) cores!
 
 up:
-	@printf "%-57b %b" "$(GREEN)RUNNING CONTAINERS$(X)\n"
+	@printf "%-57b %b" "$(GREEN)RUNNING CONTAINERS 'up'$(X)\n"
 	docker-compose -f ./srcs/docker-compose.yml up -d
 	@echo $(OS) Runned with $(NUMPROC) cores!
 
+down:
+	@printf "%-57b %b" "$(GREEN)CLOSING CONTAINERS 'down'$(X)\n"
+	docker-compose -f ./srcs/docker-compose.yml down
+	@echo $(OS) Closed with $(NUMPROC) cores!
+
 clean: 
-	@echo "$(NAME): $(RED)$(OBJECTS) was deleted$(RESET)"
+	@chmod 744 clean.sh
+	@./clean.sh
+	@echo "$(NAME): $(RED)ALL THINGS CLEANED 'clean'$(RESET)"
 
 fclean: clean
-	@echo "$(NAME): $(RED)$(NAME) was deleted$(RESET)"
+	@echo "$(NAME): $(RED) was deleted$(RESET)"
 
 re:
 	@$(MAKE) fclean --no-print-directory
 	@$(MAKE) all --no-print-directory
+
+info:
+	@echo "=============================== IMAGES ==============================="
+	@docker images
+	@echo
+	@echo "============================= CONTAINERS ============================="
+	@docker ps -a
+	@echo
+	@echo "=============== NETWORKS ==============="
+	@docker network ls
+	@echo
+	@echo "====== VOLUMES ======"
+	@docker volume ls
