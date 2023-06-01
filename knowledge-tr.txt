@@ -1,0 +1,100 @@
+docker-compose
+{
+	
+}
+
+docker-compose -d
+{
+	docker-compose up -d komutu, -d bayrağı ile birlikte kullanıldığında,
+	 konteynerleri arka planda başlatır ve çalışır durumda bırakır.
+	 Bu, detached mode olarak da bilinir.
+}
+
+docker-compose -f
+{
+	-f bayrağı, geçerli dizinde bulunmayan bir Compose dosyasının yolunu
+	 belirtmek için kullanılır. "docker-compose" komutunu çalıştırırken
+	 Compose dosyanızın konumunu belirtmek için bu bayrağı kullanabilirsiniz.
+
+	Örneğin, "/myproject" dizininde "docker-compose.yml" adlı bir Compose
+	 dosyanız varsa, kapsayıcılarınızı başlatmak için aşağıdaki komutu
+	 çalıştırabilirsiniz:
+	docker-compose -f /projem/docker-compose.yml up
+}
+
+docker-compose -f /project/location/this.yml up
+{
+	*.yml dosyasini baslatmak icin 'up' komutu kullanilir.
+}
+
+tail -f <file>
+{
+	tail komutu, bir metin dosyasının son on satırını görüntüler.
+	 -f bayrağı ile birlikte kullanıldığında, tail komutu dosyayı canlı
+	 olarak izler ve dosyaya eklenen yeni satırları gerçek zamanlı
+	 olarak görüntüler.
+
+	Sample:
+		tail -f /var/log/apache2/access.log
+}
+
+ssl_protocols
+{
+	ssl_protocols direktifi, NGINX web sunucusunda hangi SSL/TLS sürümlerinin
+	 kullanılacağını belirler.
+	tlsv1.2 ve tlsv1.3, Transport Layer Security (TLS) protokolünün sürümlerini
+	 temsil eder. Bu sürümler, ağ iletişimlerinin güvenliğini sağlamak için
+	 tasarlanmış kriptografik protokollerdir.
+}
+
+/**
+* @links: https://docs.docker.com/network/
+*/
+Docker network types.
+{
+	Docker, "bridge", "host", "overlay", "ipvlan", "macvlan" ve "none" olmak
+	 uzere 6 çeşit ağ türlerini destekler.
+
+	1- "bridge" ağı: Bir köprü ağı, aynı köprü ağına bağlı kapsayıcıların o köprü
+	 ağına bağlı olmayan kapsayıcılardan izolasyon sağlarken iletişim kurmasına
+	 izin veren bir yazılım köprüsü kullanır. Docker'ı başlattığınızda, otomatik
+	 olarak varsayılan bir köprü ağı (köprü olarak da adlandırılır) oluşturulur
+	 ve aksi belirtilmedikçe yeni başlatılan kapsayıcılar buna bağlanır.
+	 Kullanıcı tanımlı özel köprü ağları da oluşturabilirsiniz.
+
+	2- "host" ağı: Ana bilgisayar ağının kullanılması, kapsayıcı ile
+	 Docker ana bilgisayarı arasındaki ağ yalıtımını kaldırır ve doğrudan
+	 ana bilgisayarın ağını kullanır.
+
+	3- "overlay" ağı: Yer paylaşımlı ağ sürücüsü, birden çok Docker arka plan
+	 programı ana bilgisayarı arasında dağıtılmış bir ağ oluşturur.
+	 Bu ağ, ana bilgisayara özgü ağların üzerinde (bindirmeler) yer alır ve
+	 kendisine bağlı kapların (sürü hizmet kapsayıcılar dahil) şifreleme
+	 etkinleştirildiğinde güvenli bir şekilde iletişim kurmasına olanak tanır.
+	 Docker, her paketin doğru Docker arka plan programı ana bilgisayarına
+	 ve doğru hedef kapsayıcısına¹ yönlendirilmesini şeffaf bir şekilde işler.
+
+	4- `ipvlan` ağı: Ipvlan ağları, size tek bir kapsayıcının arayüzüne birden
+	 çok IP adresi atama yeteneği verir.
+
+	5- `macvlan` ağı: Macvlan ağları, bir kapsayıcıya bir MAC adresi atamanıza
+	 izin vererek, onun ağınızda fiziksel bir cihaz olarak görünmesini sağlar.
+	 Docker arka plan programı, trafiği kapsayıcılara MAC adreslerine göre yönlendirir.
+
+	6- "none" ağı: Bu mod, kapsayıcı için herhangi bir IP yapılandırmaz ve
+	 dış ağa ve diğer kapsayıcılara erişimi yoktur. Geridöngü adresine
+	 sahiptir ve toplu işleri çalıştırmak için kullanılabilir.
+
+}
+
+Sample commands
+{
+	su -> for join root
+	123 -> root password
+	apt install docker.io
+	docker pull centos
+	docker run -d -t --name helloImCentos centos
+	docker exec -it helloImCentos bash
+	docker inspect helloImCentos
+	netstat -an | grep LISTEN
+}

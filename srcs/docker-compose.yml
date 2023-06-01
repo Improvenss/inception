@@ -1,3 +1,7 @@
+# ---- LINKS ----
+# @link: https://docs.docker.com/network/
+# @note: 
+# ---------------
 version: "3.0"
 services:
 # _____NGINX______ #
