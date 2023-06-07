@@ -1,3 +1,46 @@
+Links
+{
+	Docker 101 tutorial.
+	https://www.docker.com/101-tutorial/
+
+	How to install Docker on Ubuntu?
+	https://phoenixnap.com/kb/install-docker-on-ubuntu-20-04
+
+	How to install Kali Linux on Docker?
+	https://www.kali.org/docs/containers/using-kali-docker-images/
+
+	What is Metapackages?
+	https://www.kali.org/docs/general-use/metapackages/
+
+	How to install Docker Compose on Debian?
+	https://www.digitalocean.com/community/tutorials/how-to-install-docker-compose-on-debian-10
+
+	How to install Apache Web Server on Debian?
+	https://www.digitalocean.com/community/tutorials/how-to-install-the-apache-web-server-on-debian-11
+
+	What is Docker Volumes?
+	https://earthly.dev/blog/docker-volumes/#:~:text=A%20Docker%20volume%20is%20an,keeping%20them%20secure%20and%20effective.
+
+	Docker Networking.
+	https://docs.docker.com/network/
+
+	Losing data when the container exits.
+	https://stackoverflow.com/questions/19585028/i-lose-my-data-when-the-container-exits
+
+	What is NGINX Web Server
+	https://www.youtube.com/watch?v=7VAI73roXaY
+
+	What is SSL/TSL?
+	https://www.cloudflare.com/learning/ssl/what-is-ssl/
+
+	VIDEOS
+	{
+		What is Container?
+		https://www.youtube.com/watch?v=EnJ7qX9fkcU
+	}
+
+}
+
 docker-compose
 {
 	
@@ -84,7 +127,14 @@ Docker network types.
 	6- "none" ağı: Bu mod, kapsayıcı için herhangi bir IP yapılandırmaz ve
 	 dış ağa ve diğer kapsayıcılara erişimi yoktur. Geridöngü adresine
 	 sahiptir ve toplu işleri çalıştırmak için kullanılabilir.
+}
 
+How can i install/use 'Kali Linux'
+{
+	docker pull docker.io/kalilinux/kali-rolling
+	docker run --tty --interactive kalilinux/kali-rolling
+	docker container list --all
+	docker 
 }
 
 Sample commands
