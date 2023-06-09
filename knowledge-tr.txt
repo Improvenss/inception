@@ -70,6 +70,27 @@ docker-compose -f /project/location/this.yml up
 	*.yml dosyasini baslatmak icin 'up' komutu kullanilir.
 }
 
+Dockerfile
+{
+	`FROM` komutu, bir container'ın çalışacağı temel image'ı belirtir.
+	 Bu komut, Docker image'ının temel alınacağı kaynağı belirler.
+	 İmaj, önceden oluşturulmuş bir imaj olabilir veya
+	 bir resmi Docker Hub deposundan alınabilir.
+
+	Dockerfile'da, `RUN`, `CMD` ve `ENTRYPOINT` aralarindaki farklar;
+
+	`RUN` komutu, imaj oluşturulurken çalıştırılır. Yani, `RUN`'a geçirilen komut,
+	 mevcut imajın üzerinde yeni bir katmanda çalıştırılır. Sonra sonuç imaja kaydedilir.
+
+	`CMD` komutu ile konteyner başlatıldığında çalıştırılacak varsayılan komutu belirtebiliriz.
+	 Bu komut, docker run komutunda belirtilen komutlar tarafından geçersiz kılınabilir.
+
+	`ENTRYPOINT` komutu ise konteyner başlatıldığında çalıştırılacak komutu belirtir.
+	 Ayrıca, docker run komutunda belirtilen komutlar ENTRYPOINT komutunun parametreleri
+	 olarak eklenir. Bu, konteyneri çalıştırırken ENTRYPOINT komutunun parametrelerini
+	 değiştirmek için docker run komutunu kullanmanızı sağlar.
+}
+
 tail -f <file>
 {
 	tail komutu, bir metin dosyasının son on satırını görüntüler.
