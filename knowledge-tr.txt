@@ -6,8 +6,12 @@ Links
 	How to install Docker on Ubuntu?
 	https://phoenixnap.com/kb/install-docker-on-ubuntu-20-04
 
+	How can i install Docker inside Docker?
+	https://stackoverflow.com/questions/27879713/is-it-ok-to-run-docker-from-inside-docker
+
 	How to install Kali Linux on Docker?
 	https://www.kali.org/docs/containers/using-kali-docker-images/
+	https://wiki.archlinux.org/title/docker
 
 	What is Metapackages?
 	https://www.kali.org/docs/general-use/metapackages/
@@ -17,6 +21,10 @@ Links
 
 	How to install Apache Web Server on Debian?
 	https://www.digitalocean.com/community/tutorials/how-to-install-the-apache-web-server-on-debian-11
+
+	How can i create a self 'SSL Certificate' for 'NGINX'?
+	https://www.humankode.com/ssl/create-a-selfsigned-certificate-for-nginx-in-5-minutes/
+	https://stackoverflow.com/questions/28625178/bash-certutil-command-not-found
 
 	What is Docker Volumes?
 	https://earthly.dev/blog/docker-volumes/#:~:text=A%20Docker%20volume%20is%20an,keeping%20them%20secure%20and%20effective.
@@ -156,6 +164,13 @@ How can i install/use 'Kali Linux'
 	docker run --tty --interactive kalilinux/kali-rolling
 	docker container list --all
 	docker 
+}
+
+How can i install a certificate verification on Chrome etc.?
+{
+	apt update
+	apt full-upgrade -y
+	apt install -y libnss3-tools
 }
 
 Sample commands
