@@ -11,6 +11,8 @@ Links
 
 	How to install Kali Linux on Docker?
 	https://www.kali.org/docs/containers/using-kali-docker-images/
+
+	How to install Arch Linux on Docker?
 	https://wiki.archlinux.org/title/docker
 
 	What is Metapackages?
@@ -41,10 +43,25 @@ Links
 	What is SSL/TSL?
 	https://www.cloudflare.com/learning/ssl/what-is-ssl/
 
+	How can i install, configure and test NGINX to use TLSv1.2/TLSv1.3?
+	https://www.cyberciti.biz/faq/configure-nginx-to-use-only-tls-1-2-and-1-3/
+
+	What is 'docker prune' command?
+	https://docs.docker.com/config/pruning/
+
+	How can i create Dockerfile?
+	https://docs.docker.com/engine/reference/builder/
+
+	How can i download, install and configure Wordpress?
+	https://www.digitalocean.com/community/tutorials/install-wordpress-nginx-ubuntu
+
 	VIDEOS
 	{
 		What is Container?
 		https://www.youtube.com/watch?v=EnJ7qX9fkcU
+
+		The NGINX Crash Course.
+		https://www.youtube.com/watch?v=7VAI73roXaY
 	}
 
 }
