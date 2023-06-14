@@ -52,6 +52,9 @@ Links
 	How can i create Dockerfile?
 	https://docs.docker.com/engine/reference/builder/
 
+	What is difference between ENTRYPOINT and CMD command in Dockerfile?
+	https://stackoverflow.com/questions/21553353/what-is-the-difference-between-cmd-and-entrypoint-in-a-dockerfile/21564990#21564990
+
 	How can i download, install and configure Wordpress?
 	https://www.digitalocean.com/community/tutorials/install-wordpress-nginx-ubuntu
 
