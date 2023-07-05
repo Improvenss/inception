@@ -1,0 +1,6 @@
+FROM	debian:buster
+
+RUN		apt update
+RUN		apt full-upgrade -y
+RUN		apt install screenfetch -y
+RUN		screenfetch
