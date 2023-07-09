@@ -119,6 +119,45 @@ Dockerfile
 	 değiştirmek için docker run komutunu kullanmanızı sağlar.
 }
 
+Docker's Dangling and Intermediate images; <none>:<none>
+{
+	TR
+	Bağladığınız makaleye göre, Docker'daki `<none>:<none>` görüntüleri iki farklı
+	 görüntü türüne atıfta bulunabilir: ara görüntüler ve sarkan görüntüler¹.
+
+	Ara görüntüler, bir Docker görüntüsü oluşturma işlemi sırasında oluşturulur.
+	 Dockerfile'daki her talimat, görüntüde yeni bir katman oluşturur ve her
+	 katman bir ara görüntüdür. Bu ara görüntüler, "docker görüntüleri" komutu
+	 çalıştırıldığında varsayılan olarak gösterilmez, ancak tüm görüntüleri
+	 göstermek için "-a" bayrağı kullanılarak görülebilir. Ara imajlar herhangi
+	 bir disk alanı sorununa neden olmaz, ancak `docker images -a`¹ çalıştırılırken
+	 görmek kafa karıştırıcı olabilir.
+
+	Öte yandan sarkan görüntüler, artık herhangi bir kapsayıcı veya başka
+	 görüntü tarafından kullanılmayan veya referans verilmeyen görüntülerdir.
+	 Bunlar, eski sürümü düzgün bir şekilde temizlemeden görüntünün yeni bir
+	 sürümünü oluştururken ortaya çıkabilir. Sarkan görüntüler disk alanı
+	 sorunlarına neden olabilir ve `-f "dangling=true"` filtresi¹ ile `docker rmi`
+	 komutu kullanılarak kaldırılmalıdır.
+
+	EN
+	According to the article you linked, `<none>:<none>` images in Docker can
+	 refer to two different types of images: intermediate images and dangling images¹.
+
+	Intermediate images are created during the process of building a Docker image.
+	 Each instruction in a Dockerfile creates a new layer in the image, and each
+	 layer is an intermediate image. These intermediate images are not shown by
+	 default when running the `docker images` command, but can be seen by using
+	 the `-a` flag to show all images. Intermediate images do not cause any disk
+	 space problems, but they can be confusing to see when running `docker images -a`¹.
+
+	Dangling images, on the other hand, are images that are no longer being used
+	 or referenced by any containers or other images. These can occur when building
+	 a new version of an image without properly cleaning up the old version.
+	 Dangling images can cause disk space problems and should be removed using
+	 the `docker rmi` command with the `-f "dangling=true"` filter¹.
+}
+
 tail -f <file>
 {
 	tail komutu, bir metin dosyasının son on satırını görüntüler.
