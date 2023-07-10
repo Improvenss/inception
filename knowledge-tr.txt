@@ -242,4 +242,5 @@ Sample commands
 	docker exec -it helloImCentos bash
 	docker inspect helloImCentos
 	netstat -an | grep LISTEN
+	netstat -nlpt | grep docker
 }

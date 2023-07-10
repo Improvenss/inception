@@ -1,12 +1,10 @@
 su
 123
-apt-get update
-apt-get upgrade
-apt-get install make
-apt-get install docker.io
-apt-get install docker-compose
+apt-get update;
+apt-get upgrade -y;
+apt-get install -y make docker.io docker-compose vim wget curl;
+mkdir /home/$USER/Desktop/inception && cd /home/$USER/Desktop/inception;
 apt install apache2
-apt-get install vim
 hostname -I
 hostname -I | awk '{print $2}'
 cd /etc/apache2/
