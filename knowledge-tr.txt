@@ -140,6 +140,11 @@ Docker's Dangling and Intermediate images; <none>:<none>
 	 sorunlarına neden olabilir ve `-f "dangling=true"` filtresi¹ ile `docker rmi`
 	 komutu kullanılarak kaldırılmalıdır.
 
+	NOTE: Bu <none>:<none> sarkan görüntüler değil, ara görüntü katmanlarıdır.
+	 Her Dockerfile adımında, ara katmanlar için yeniden kullanılabilirliği artıran,
+	 disk kullanımını azaltan ve her adımın önbelleğe alınmasına izin vererek docker
+	 yapılarını hızlandıran yeni bir karma oluşturulur.
+
 	EN
 	According to the article you linked, `<none>:<none>` images in Docker can
 	 refer to two different types of images: intermediate images and dangling images¹.
@@ -156,6 +161,11 @@ Docker's Dangling and Intermediate images; <none>:<none>
 	 a new version of an image without properly cleaning up the old version.
 	 Dangling images can cause disk space problems and should be removed using
 	 the `docker rmi` command with the `-f "dangling=true"` filter¹.
+
+	NOTE: These <none>:<none> are not dangling images, they are intermediate image layers.
+	 In each Dockerfile step a new hash is made for intermediate layers that increase re
+	 usability, decrease disk usage, and speed up docker builds by allowing each step
+	 to be cached.
 }
 
 tail -f <file>
