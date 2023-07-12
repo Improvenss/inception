@@ -117,6 +117,37 @@ Dockerfile
 	 Ayrıca, docker run komutunda belirtilen komutlar ENTRYPOINT komutunun parametreleri
 	 olarak eklenir. Bu, konteyneri çalıştırırken ENTRYPOINT komutunun parametrelerini
 	 değiştirmek için docker run komutunu kullanmanızı sağlar.
+	 
+	WHAT IS -> RUN mkdir /run/<command>?
+
+	TR
+	Bu Dockerfile, bir Debian Buster tabanlı PHP-FPM (FastCGI Process Manager)
+	 görüntüsü oluşturur.
+	 PHP-FPM, PHP betiklerini işlemek için kullanılan bir FastCGI uygulamasıdır.
+
+	`RUN mkdir /run/php` komutu, `/run/php` dizinini oluşturur. Bu dizin,
+	 PHP-FPM tarafından kullanılır. Örneğin, PHP-FPM bu dizinde PID
+	 dosyalarını ve Unix soketlerini saklar. Bu nedenle, PHP-FPM'i
+	 çalıştırmak için bu dizinin oluşturulması gerekebilir.
+
+	Bu Dockerfile'da, son satırda `CMD ["/usr/sbin/php-fpm7.3", "-F"]` komutu
+	 ile PHP-FPM ön planda çalıştırılır ve deamonize ayarından bağımsız
+	 olarak çalışır. Bu sayede, Docker konteyneri içinde PHP-FPM süreci
+	 çalıştırılır ve PHP betiklerini işleyebilir.
+
+	EN
+	This Dockerfile creates a PHP-FPM (FastCGI Process Manager) image based
+	 on Debian Buster. PHP-FPM is a FastCGI implementation used to process PHP scripts.
+
+	The `RUN mkdir /run/php` command creates the `/run/php` directory.
+	 This directory is used by PHP-FPM. For example, PHP-FPM stores PID
+	 files and Unix sockets in this directory. Therefore, this directory
+	 must be created to run PHP-FPM.
+
+	In this Dockerfile, the last line runs PHP-FPM in the foreground with
+	 the `CMD ["/usr/sbin/php-fpm7.3", "-F"]` command, ignoring the
+	 deamonize setting. This way, the PHP-FPM process is run inside the
+	 Docker container and can process PHP scripts.
 }
 
 Dockerfile Envionment Variables usage
