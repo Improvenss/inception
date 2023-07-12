@@ -119,6 +119,74 @@ Dockerfile
 	 değiştirmek için docker run komutunu kullanmanızı sağlar.
 }
 
+Dockerfile Envionment Variables usage
+{
+	TR
+	Docker dosyanızda ortam değişkenlerini kullanmak istiyorsanız, "ARG" ve "ENV"
+	 komutlarını kullanabilirsiniz.
+	"ARG" talimatı, "docker build" komutunu çalıştırırken "--build-arg" bayrağını
+	 kullanarak oluşturma işlemine aktarılabilecek bir değişken tanımlamanıza
+	 olanak tanır. Örneğin, Dockerfile dosyanıza aşağıdaki satırı ekleyebilirsiniz:
+	```
+	ARG KULLANICI
+	```
+	Ardından, görüntünüzü oluştururken, "--build-arg" bayrağını kullanarak "USER"
+	 değişkeninin değerini şu şekilde iletebilirsiniz:
+	```
+	docker build --build-arg USER=gsever -t myimage .
+	```
+	"ENV" talimatı, çalışma zamanında kapsayıcınız için kullanılabilecek ortam
+	 değişkenlerini ayarlamanıza olanak tanır. Statik bir değer veya bir "ARG"
+	 değeri kullanarak bir ortam değişkeninin değerini ayarlamak için "ENV"
+	 talimatını kullanabilirsiniz. Örneğin, Dockerfile dosyanıza aşağıdaki
+	 satırları ekleyebilirsiniz:
+	```
+	ARG KULLANICI
+	ENV KULLANICI=$KULLANICI
+	```
+	Bu, "USER" ortam değişkeninin değerini "USER" yapı bağımsız değişkeninin değerine ayarlar.
+	`ARG` veya `ENV` kullanarak ortam değişkenlerinizi tanımladıktan sonra, `${VAR}`
+	 sözdizimini kullanarak Dockerfile dosyanızda bunlara başvurabilirsiniz. Örneğin,
+	 sizin durumunuzda, sertifika dosyasını kopyalamak için aşağıdaki komutu kullanabilirsiniz:
+	```
+	cp /etc/ssl/certs/${USER}.crt /var/www/html/ ÇALIŞTIRIN
+	```
+
+	EN
+	If you want to use environment variables in your Dockerfile, you can use the
+	 `ARG` and `ENV` instructions.
+
+	The `ARG` instruction allows you to define a variable that can be passed to
+	 the build process using the `--build-arg` flag when running the `docker build`
+	 command. For example, you could add the following line to your Dockerfile:
+	```
+	ARG USER
+	```
+	Then, when building your image, you could pass the value of the `USER` variable
+	 using the `--build-arg` flag like this:
+	```
+	docker build --build-arg USER=gsever -t myimage .
+	```
+	The `ENV` instruction allows you to set environment variables that will be
+	 available to your container at runtime. You can use the `ENV` instruction
+	 to set the value of an environment variable using either a static value
+	 or the value of an `ARG`. For example, you could add the following lines
+	 to your Dockerfile:
+	```
+	ARG USER
+	ENV USER=$USER
+	```
+	This would set the value of the `USER` environment variable to the value
+	 of the `USER` build argument.
+	Once you have defined your environment variables using either `ARG` or
+	 `ENV`, you can reference them in your Dockerfile using the `${VAR}` syntax.
+	 For example, in your case, you could use the following command to copy
+	 the certificate file:
+	```
+	RUN cp /etc/ssl/certs/${USER}.crt /var/www/html/
+	```
+}
+
 Docker's Dangling and Intermediate images; <none>:<none>
 {
 	TR
