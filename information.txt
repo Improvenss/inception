@@ -1,3 +1,30 @@
+localhost
+localhost:80
+gsever:80
+https://gsever
+https://gsever:80
+https://localhost
+https://localhost/443 -> https://localhost
+https://gsever.42.fr
+https://gsever.42.fr/
+https://127.0.0.1
+https://127.0.0.1/
+https://127.0.0.1:80
+https://gsever
+All of them showing WordPress's default(bird Helloworld) page.
+
+https://gsever.42.fr/me
+https://gsever.42.fr/static
+https://gsever.42.fr/adminer -> EXPORT 9000 -> Kendi containerler arasinda iletisim kurabilirsin. Eger PORT olsaydi localhost:9000 olarak baglanti kurabilirdin, local aglarla.
+These are Hugo's static page
+
+NOTE: vim /etc/hosts
+{
+	127.0.0.1	localhost
+	127.0.0.1	gsever
+	127.0.0.1	gsever.42.fr
+}
+
 Özet: Bu belge, Sistem Yönetimi ile ilgili bir alıştırmadır.
 Bölüm I Önsöz
 Bir konteyner yetmez daha derine inmek lazım.

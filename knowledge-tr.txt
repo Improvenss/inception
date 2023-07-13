@@ -117,7 +117,7 @@ Dockerfile
 	 Ayrıca, docker run komutunda belirtilen komutlar ENTRYPOINT komutunun parametreleri
 	 olarak eklenir. Bu, konteyneri çalıştırırken ENTRYPOINT komutunun parametrelerini
 	 değiştirmek için docker run komutunu kullanmanızı sağlar.
-	 
+	-------------------------------------------
 	WHAT IS -> RUN mkdir /run/<command>?
 
 	TR
@@ -148,6 +148,28 @@ Dockerfile
 	 the `CMD ["/usr/sbin/php-fpm7.3", "-F"]` command, ignoring the
 	 deamonize setting. This way, the PHP-FPM process is run inside the
 	 Docker container and can process PHP scripts.
+	------------------------------------- 
+	What is difference between EXPOSE and PORT?
+	TR
+	Docker'da `EXPOSE` ve `PORTS` arasındaki temel fark, `EXPOSE` komutunun
+	 bağlantı noktalarını ana makineye yayınlamadan göstermesidir; yalnızca
+	 bağlantılı servislere erişilebilirler¹. Öte yandan, `PORTS` bölümü Ana
+	 Bilgisayarda bağlantı noktaları yayınlar.
+
+	Özetle, `EXPOSE` komutu konteyner içindeki servise Docker dışından değil,
+	 diğer Docker konteynırlarının içinden erişilebilir². `PORTS` ise
+	 konteynerdeki servise Docker dışında bile her yerden erişilebilir.
+
+	EN
+	The main difference between EXPOSE and PORTS in Docker is that the EXPOSE
+	 command displays the ports without publishing them to the host machine;
+	 they are only accessible to linked services. On the other hand, the
+	 PORTS section publishes ports on the Host machine.
+
+	In summary, the EXPOSE command allows access to the container service from
+	 within other Docker containers, but not from outside Docker. PORTS, on
+	 the other hand, allows access to the container service from anywhere,
+	 even outside Docker.
 }
 
 Dockerfile Envionment Variables usage
