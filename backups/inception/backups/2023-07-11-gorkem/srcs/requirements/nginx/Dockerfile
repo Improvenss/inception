@@ -1,0 +1,35 @@
+FROM	debian:buster
+
+#install all the program
+RUN		apt-get update
+RUN		apt-get install -y nginx \
+                openssl
+
+# # nginx SSL
+# RUN mkdir /etc/nginx/ssl
+# RUN openssl req -newkey rsa:4096 -x509 -sha256 -days 365 -nodes \
+#        -out /etc/nginx/ssl/gsever.crt \
+#        -keyout /etc/nginx/ssl/gsever.key \
+#        -subj "/C=TR/ST=Kocaeli/L=Istanbul/O=Ecole42/OU=gsever/CN=gsever"
+
+# nginx SSL
+# RUN mkdir /etc/nginx/ssl
+RUN openssl req -newkey rsa:4096 -x509 -sha256 -days 365 -nodes \
+       -out /etc/ssl/certs/gsever.crt \
+       -keyout /etc/ssl/certs/gsever.key \
+       -subj "/C=TR/ST=Kocaeli/L=Istanbul/O=Ecole42/OU=gsever/CN=gsever"
+
+
+COPY ./conf/nginx.conf /etc/nginx/conf.d
+
+# nginx config
+RUN mkdir -p /run/nginx
+
+#the only port allowed
+EXPOSE	443
+
+# COPY /etc/ssl/certs/gsever.crt /var/www/html/
+RUN cp /etc/ssl/certs/gsever.crt /var/www/html/
+
+# Start nginx
+CMD ["nginx", "-g", "daemon off;"]

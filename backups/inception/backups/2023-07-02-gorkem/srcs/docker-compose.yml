@@ -1,0 +1,83 @@
+# ---- LINKS ----
+# @link: https://docs.docker.com/network/
+# @note: 
+# ---------------
+
+version: "3.7"
+
+# my-test:
+#   image: hello-world
+
+services: # For containers(services).
+  # _____NGINX______ #
+  nginx: # For 'Web Server'.
+    container_name: nginx # PDF asks us to create it with this name.
+    build: ./requirements/nginx/ # Container's 'Dockerfile' path location for run this file.
+    env_file: .env
+    volumes:
+      - wp:/var/www/wordpress
+    # networks:
+      # - incepnet
+    # depends_on:
+      # - wordpress
+    ports:
+      - "443:443" # Local port / Exported port.
+  # ________________ #
+  # ____WORDPRESS___ #
+  wordpress:
+    container_name: wordpress # PDF asks us to create it with this name.
+    build: ./requirements/wordpress/
+    env_file: .env
+    volumes:
+      - wp:/var/www/wordpress
+    # networks:
+    #   - incepnet
+    # depends_on:
+    #   - mariadb
+  # ________________ #
+
+###############################################################################
+#                             VOLUMES                                         #
+#/////////////////////////////////////////////////////////////////////////////#
+volumes: # For using backup all things.
+  wp:
+    name: wp
+    # env_file: .env
+    # env_printer:
+      # image: "helloooasdf"
+    # environment:
+      # - asdf=asdf
+    driver: local # We indicate that it works in locale, we can also write an ip address.
+    driver_opts:
+      type: none
+      o: bind
+      # device: /home/gorkem/data/wp #volume path
+      # device: /home/${USER}/data/wp #volume path
+      device: ${VOLUMES_WP} #volume path
+
+  # wordpress:
+  #   container_name: wordpress
+  #   build: ./requirements/wordpress/
+  #   env_file: .env
+  #   volumes:
+  #     - wp:/var/www/wordpress
+  #   networks:
+  #     - incepnet
+  #   depends_on:
+  #     - mariadb
+
+  # nginx:
+  #   container_name: nginx
+  #   build: ./requirements/nginx/
+  #   volumes:
+  #     - wp:/var/www/wordpress
+  #   networks:
+  #     - incepnet
+  #   depends_on:
+  #     - wordpress
+  #   ports:
+  #     - "443:443" # local port / exported port
+
+###############################################################################
+#                             VOLUMES                                         #
+#/////////////////////////////////////////////////////////////////////////////#
