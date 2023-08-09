@@ -1,5 +1,6 @@
 # ---- LINKS ----
 # @link: https://docs.docker.com/network/
+# @link: progress bar: https://betterstack.com/community/questions/how-to-debug-failed-docker-build-command/
 # @note: 
 # ---------------
 
@@ -63,6 +64,8 @@ services: # For containers(services).
     container_name: nginx # PDF asks us to create it with this name.
     build: ./requirements/nginx/ # Container's 'Dockerfile' path location for run this file.
     env_file: .env
+    # command: apt update && apt install -y pv
+    # command: bash -c "docker-compose-progress.sh"
     volumes:
       - wordpress_data:/var/www/html
       # - wordpress_data:/etc/ssl/
@@ -75,12 +78,15 @@ services: # For containers(services).
       - adminer
       - redis
       - hugo
+    # progress: plain
   # ________________ #
   # ____MARIADB_____ #
   mariadb:
     container_name: mariadb # PDF asks us to create it with this name.
     build: ./requirements/mariadb/ # Dockerfile path locaiton.
     env_file: .env
+    # command: apt update && apt install -y pv
+    # command: bash -c "docker-compose-progress.sh"
     volumes:
       - mariadb_data:/var/lib/mysql # Mirroring this location to this location.
     networks:
@@ -88,6 +94,7 @@ services: # For containers(services).
     restart: always # If this container is closed, it restarts.
     # ports:
       # - 3306:3306
+    # progress: plain
   # ________________ #
   # ____WORDPRESS___ #
   wordpress:
@@ -97,6 +104,7 @@ services: # For containers(services).
     #   context: ./requirements/wordpress
     #   dockerfile: Dockerfile
     env_file: .env
+    # command: bash -c "docker-compose-progress.sh"
     volumes:
       - wordpress_data:/var/www/html
     networks:
@@ -112,6 +120,7 @@ services: # For containers(services).
   adminer:
     container_name: adminer
     build: ./requirements/bonus/adminer/
+    # command: bash -c "docker-compose-progress.sh"
     networks:
       - inception_network
     restart: always
@@ -127,6 +136,7 @@ services: # For containers(services).
     container_name: redis
     build: ./requirements/bonus/redis/
     env_file: .env
+    # command: bash -c "docker-compose-progress.sh"
     volumes:
       - wordpress_data:/var/www/html
     networks:
@@ -145,6 +155,7 @@ services: # For containers(services).
     environment:
       FTP_USR: ${FTP_USR}
       FTP_PWD: ${FTP_PWD}
+    # command: bash -c "docker-compose-progress.sh"
     volumes:
       - wordpress_data:/var/www/html
     networks:
@@ -158,6 +169,7 @@ services: # For containers(services).
   hugo:
     container_name: hugo
     build: ./requirements/bonus/hugo
+    # command: bash -c "docker-compose-progress.sh"
     networks:
       - inception_network
     restart: always
@@ -166,6 +178,7 @@ services: # For containers(services).
   static_page:
     container_name: static_page
     build: ./requirements/bonus/static_page
+    # command: bash -c "docker-compose-progress.sh"
     networks:
       - inception_network
     restart: always

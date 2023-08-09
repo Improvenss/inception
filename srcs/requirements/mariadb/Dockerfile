@@ -3,10 +3,14 @@
 
 FROM	debian:buster
 
+# RUN apt-get update && apt-get install -y pv
+
 RUN apt-get update && apt-get install -y \
 	mariadb-server \
 	mariadb-client \
 	&& rm -rf /var/lib/apt/lists/*
+
+# | pv -f -L 5 -s57 > /dev/null
 
 #Allow to run the daemon of mysql
 # Purge and re-create /var/lib/mysql with appropriate ownership
@@ -14,6 +18,8 @@ RUN apt-get update && apt-get install -y \
 RUN mkdir -p /var/run/mysqld \
 	&& chown -R mysql:mysql /var/run/mysqld \
 	&& chmod 777 /var/run/mysqld
+
+# | pv -f -L 5 -s57 > /dev/null
 
 EXPOSE 3306
 

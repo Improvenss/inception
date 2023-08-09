@@ -49,4 +49,8 @@ fi
 
 /etc/init.d/mysql stop
 
+# CMD ["/usr/local/bin/mariadb.sh", "mysqld", "--bind-address=0.0.0.0"]
+# For this exec command look like:
+# mariadb.sh mysqld --bind-address=0.0.0.0
+# exec "@" = mariadb.sh mysqld --bind-address=0.0.0.0
 exec "$@"
