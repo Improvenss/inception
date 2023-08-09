@@ -63,7 +63,13 @@ build:
 	@mkdir -p /home/$(USER)/data/mysql
 	@mkdir -p /home/$(USER)/data/wordpress
 # @mkdir -p /home/$(USER)/data/prt
+# @docker-compose -f srcs/docker-compose.yml build
 	@docker-compose -f srcs/docker-compose.yml build --parallel
+# @docker-compose -f srcs/docker-compose.yml build --quiet
+# @docker-compose -f srcs/docker-compose.yml build --progress=plain
+# @docker-compose -f srcs/docker-compose.yml build | pv -f -L 5 -s57 > /dev/null
+# @docker-compose -f srcs/docker-compose.yml build | pv -lep -s $$(docker-compose -f srcs/docker-compose.yml config | grep "service:" | wc -l) > /dev/null
+# @docker-compose -f srcs/docker-compose.yml build --parallel | pv -lep -s $$(docker-compose -f srcs/docker-compose.yml config | grep "service:" | wc -l) > /dev/null
 	@echo $(OS) Builded with $(NUMPROC) cores!
 
 up: update_hosts
@@ -72,18 +78,39 @@ up: update_hosts
 	@mkdir -p /home/$(USER)/data/wp
 	@mkdir -p /home/$(USER)/data/prt
 	@docker-compose -f srcs/docker-compose.yml up -d
+# @docker-compose -f srcs/docker-compose.yml up -d --progress=plain
+# @docker-compose -f srcs/docker-compose.yml up -d | pv -f -L 5 -s57 > /dev/null
+# @docker-compose -f srcs/docker-compose.yml up -d | pv -lep -s $$(docker-compose -f srcs/docker-compose.yml config | grep "service:" | wc -l) > /dev/null
 # @docker-compose -f srcs/docker-compose.yml up -d --build
 	@echo $(OS) Runned with $(NUMPROC) cores!
+
+start:
+	@docker start $$(docker ps -qa) 2>/dev/null | awk '{ print "$(B_GREEN)" $$0 "$(END)" }'
+# @docker start $$(docker ps -qa) 2>/dev/null | awk '{ print "$(B_GREEN)" $$0 "$(END)" }'
+
+stop:
+	@pv | docker stop $$(docker ps -qa) 2>/dev/null
 
 down:
 	@printf "%-57b %b" "$(GREEN)CLOSING CONTAINERS 'down'$(X)\n"
 	@docker-compose -f srcs/docker-compose.yml down
 	@echo $(OS) Closed with $(NUMPROC) cores!
 
-clean: 
-	docker-compose -f srcs/docker-compose.yml down
-	docker container stop $(shell docker ps -qa)
-	docker container rm $(shell docker ps -qa)
+pvmake:
+	@docker-compose -f srcs/docker-compose.yml build nginx | pv -f -L 5 -s57 > /dev/null
+	@docker-compose -f srcs/docker-compose.yml build mariadb | pv -f -L 5 -s57 > /dev/null
+	@docker-compose -f srcs/docker-compose.yml build wordpress | pv -f -L 5 -s57 > /dev/null
+	@docker-compose -f srcs/docker-compose.yml build adminer | pv -f -L 5 -s57 > /dev/null
+	@docker-compose -f srcs/docker-compose.yml build redis | pv -f -L 5 -s57 > /dev/null
+	@docker-compose -f srcs/docker-compose.yml build ftp-server | pv -f -L 5 -s57 > /dev/null
+	@docker-compose -f srcs/docker-compose.yml build hugo | pv -f -L 5 -s57 > /dev/null
+	@docker-compose -f srcs/docker-compose.yml build static_page | pv -f -L 5 -s57 > /dev/null
+
+clean:
+	@docker-compose -f srcs/docker-compose.yml down
+# docker container stop $(shell docker ps -qa)
+# docker container rm $$(shell docker ps -qa)
+# @docker container prune -f 2>/dev/null
 # @echo "Cleaned with $(NUMPROC) cores!"
 	@echo "$(RED)STOPPED AND CLEANED JUST CONTAINERS$(RESET)"
 
@@ -94,12 +121,15 @@ clean:
 # 	docker container rm $(shell docker ps -aq) -f
 
 fclean: clean
-	docker rmi -f $$(docker images -qa) 2>/dev/null
-	docker volume rm $$(docker volume ls -q) 2>/dev/null
-	docker network rm $$(docker network ls -q) 2>/dev/null
-	docker system prune -a --volume 2>/dev/null
-	docker system prune -a --force 2>/dev/null
-	sudo rm -rf /home/$(USER)/data 2>/dev/null
+# docker rmi -f $$(docker images -qa) 2>/dev/null
+# @docker image prune -f 2>/dev/null
+# docker volume rm $$(docker volume ls -q) 2>/dev/null
+# docker volume prune -f
+# docker network rm $$(docker network ls -q) 2>/dev/null
+# @docker network prune -f
+# @docker system prune -a --volume --force 2>/dev/null
+	@docker system prune -fa 2>/dev/null
+	@sudo rm -rf /home/$(USER)/data 2>/dev/null
 	@echo "Cleaned with $(NUMPROC) cores!"
 	@echo "$(RED)ALL THINGS CLEANED$(RESET)"
 
