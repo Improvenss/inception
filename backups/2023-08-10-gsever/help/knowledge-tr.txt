@@ -1,0 +1,377 @@
+Links
+{
+	Docker 101 tutorial.
+	https://www.docker.com/101-tutorial/
+
+	How to install Docker on Ubuntu?
+	https://phoenixnap.com/kb/install-docker-on-ubuntu-20-04
+
+	How can i install Docker inside Docker?
+	https://stackoverflow.com/questions/27879713/is-it-ok-to-run-docker-from-inside-docker
+
+	How to install Kali Linux on Docker?
+	https://www.kali.org/docs/containers/using-kali-docker-images/
+
+	How to install Arch Linux on Docker?
+	https://wiki.archlinux.org/title/docker
+
+	What is Metapackages?
+	https://www.kali.org/docs/general-use/metapackages/
+
+	How to install Docker Compose on Debian?
+	https://www.digitalocean.com/community/tutorials/how-to-install-docker-compose-on-debian-10
+
+	How to install Apache Web Server on Debian?
+	https://www.digitalocean.com/community/tutorials/how-to-install-the-apache-web-server-on-debian-11
+
+	How can i create a self 'SSL Certificate' for 'NGINX'?
+	https://www.humankode.com/ssl/create-a-selfsigned-certificate-for-nginx-in-5-minutes/
+	https://stackoverflow.com/questions/28625178/bash-certutil-command-not-found
+
+	What is Docker Volumes?
+	https://earthly.dev/blog/docker-volumes/#:~:text=A%20Docker%20volume%20is%20an,keeping%20them%20secure%20and%20effective.
+
+	Docker Networking.
+	https://docs.docker.com/network/
+
+	Losing data when the container exits.
+	https://stackoverflow.com/questions/19585028/i-lose-my-data-when-the-container-exits
+
+	What is NGINX Web Server
+	https://www.youtube.com/watch?v=7VAI73roXaY
+
+	What is SSL/TSL?
+	https://www.cloudflare.com/learning/ssl/what-is-ssl/
+
+	How can i install, configure and test NGINX to use TLSv1.2/TLSv1.3?
+	https://www.cyberciti.biz/faq/configure-nginx-to-use-only-tls-1-2-and-1-3/
+
+	What is 'docker prune' command?
+	https://docs.docker.com/config/pruning/
+
+	How can i create Dockerfile?
+	https://docs.docker.com/engine/reference/builder/
+
+	What is difference between ENTRYPOINT and CMD command in Dockerfile?
+	https://stackoverflow.com/questions/21553353/what-is-the-difference-between-cmd-and-entrypoint-in-a-dockerfile/21564990#21564990
+
+	How can i download, install and configure Wordpress?
+	https://www.digitalocean.com/community/tutorials/install-wordpress-nginx-ubuntu
+
+	VIDEOS
+	{
+		What is Container?
+		https://www.youtube.com/watch?v=EnJ7qX9fkcU
+
+		The NGINX Crash Course.
+		https://www.youtube.com/watch?v=7VAI73roXaY
+	}
+
+}
+
+docker-compose
+{
+	
+}
+
+docker-compose -d
+{
+	docker-compose up -d komutu, -d bayrağı ile birlikte kullanıldığında,
+	 konteynerleri arka planda başlatır ve çalışır durumda bırakır.
+	 Bu, detached mode olarak da bilinir.
+}
+
+docker-compose -f
+{
+	-f bayrağı, geçerli dizinde bulunmayan bir Compose dosyasının yolunu
+	 belirtmek için kullanılır. "docker-compose" komutunu çalıştırırken
+	 Compose dosyanızın konumunu belirtmek için bu bayrağı kullanabilirsiniz.
+
+	Örneğin, "/myproject" dizininde "docker-compose.yml" adlı bir Compose
+	 dosyanız varsa, kapsayıcılarınızı başlatmak için aşağıdaki komutu
+	 çalıştırabilirsiniz:
+	docker-compose -f /projem/docker-compose.yml up
+}
+
+docker-compose -f /project/location/this.yml up
+{
+	*.yml dosyasini baslatmak icin 'up' komutu kullanilir.
+}
+
+Dockerfile
+{
+	`FROM` komutu, bir container'ın çalışacağı temel image'ı belirtir.
+	 Bu komut, Docker image'ının temel alınacağı kaynağı belirler.
+	 İmaj, önceden oluşturulmuş bir imaj olabilir veya
+	 bir resmi Docker Hub deposundan alınabilir.
+
+	Dockerfile'da, `RUN`, `CMD` ve `ENTRYPOINT` aralarindaki farklar;
+
+	`RUN` komutu, imaj oluşturulurken çalıştırılır. Yani, `RUN`'a geçirilen komut,
+	 mevcut imajın üzerinde yeni bir katmanda çalıştırılır. Sonra sonuç imaja kaydedilir.
+
+	`CMD` komutu ile konteyner başlatıldığında çalıştırılacak varsayılan komutu belirtebiliriz.
+	 Bu komut, docker run komutunda belirtilen komutlar tarafından geçersiz kılınabilir.
+
+	`ENTRYPOINT` komutu ise konteyner başlatıldığında çalıştırılacak komutu belirtir.
+	 Ayrıca, docker run komutunda belirtilen komutlar ENTRYPOINT komutunun parametreleri
+	 olarak eklenir. Bu, konteyneri çalıştırırken ENTRYPOINT komutunun parametrelerini
+	 değiştirmek için docker run komutunu kullanmanızı sağlar.
+	-------------------------------------------
+	WHAT IS -> RUN mkdir /run/<command>?
+
+	TR
+	Bu Dockerfile, bir Debian Buster tabanlı PHP-FPM (FastCGI Process Manager)
+	 görüntüsü oluşturur.
+	 PHP-FPM, PHP betiklerini işlemek için kullanılan bir FastCGI uygulamasıdır.
+
+	`RUN mkdir /run/php` komutu, `/run/php` dizinini oluşturur. Bu dizin,
+	 PHP-FPM tarafından kullanılır. Örneğin, PHP-FPM bu dizinde PID
+	 dosyalarını ve Unix soketlerini saklar. Bu nedenle, PHP-FPM'i
+	 çalıştırmak için bu dizinin oluşturulması gerekebilir.
+
+	Bu Dockerfile'da, son satırda `CMD ["/usr/sbin/php-fpm7.3", "-F"]` komutu
+	 ile PHP-FPM ön planda çalıştırılır ve deamonize ayarından bağımsız
+	 olarak çalışır. Bu sayede, Docker konteyneri içinde PHP-FPM süreci
+	 çalıştırılır ve PHP betiklerini işleyebilir.
+
+	EN
+	This Dockerfile creates a PHP-FPM (FastCGI Process Manager) image based
+	 on Debian Buster. PHP-FPM is a FastCGI implementation used to process PHP scripts.
+
+	The `RUN mkdir /run/php` command creates the `/run/php` directory.
+	 This directory is used by PHP-FPM. For example, PHP-FPM stores PID
+	 files and Unix sockets in this directory. Therefore, this directory
+	 must be created to run PHP-FPM.
+
+	In this Dockerfile, the last line runs PHP-FPM in the foreground with
+	 the `CMD ["/usr/sbin/php-fpm7.3", "-F"]` command, ignoring the
+	 deamonize setting. This way, the PHP-FPM process is run inside the
+	 Docker container and can process PHP scripts.
+	------------------------------------- 
+	What is difference between EXPOSE and PORT?
+	TR
+	Docker'da `EXPOSE` ve `PORTS` arasındaki temel fark, `EXPOSE` komutunun
+	 bağlantı noktalarını ana makineye yayınlamadan göstermesidir; yalnızca
+	 bağlantılı servislere erişilebilirler¹. Öte yandan, `PORTS` bölümü Ana
+	 Bilgisayarda bağlantı noktaları yayınlar.
+
+	Özetle, `EXPOSE` komutu konteyner içindeki servise Docker dışından değil,
+	 diğer Docker konteynırlarının içinden erişilebilir². `PORTS` ise
+	 konteynerdeki servise Docker dışında bile her yerden erişilebilir.
+
+	EN
+	The main difference between EXPOSE and PORTS in Docker is that the EXPOSE
+	 command displays the ports without publishing them to the host machine;
+	 they are only accessible to linked services. On the other hand, the
+	 PORTS section publishes ports on the Host machine.
+
+	In summary, the EXPOSE command allows access to the container service from
+	 within other Docker containers, but not from outside Docker. PORTS, on
+	 the other hand, allows access to the container service from anywhere,
+	 even outside Docker.
+}
+
+Dockerfile Envionment Variables usage
+{
+	TR
+	Docker dosyanızda ortam değişkenlerini kullanmak istiyorsanız, "ARG" ve "ENV"
+	 komutlarını kullanabilirsiniz.
+	"ARG" talimatı, "docker build" komutunu çalıştırırken "--build-arg" bayrağını
+	 kullanarak oluşturma işlemine aktarılabilecek bir değişken tanımlamanıza
+	 olanak tanır. Örneğin, Dockerfile dosyanıza aşağıdaki satırı ekleyebilirsiniz:
+	```
+	ARG KULLANICI
+	```
+	Ardından, görüntünüzü oluştururken, "--build-arg" bayrağını kullanarak "USER"
+	 değişkeninin değerini şu şekilde iletebilirsiniz:
+	```
+	docker build --build-arg USER=gsever -t myimage .
+	```
+	"ENV" talimatı, çalışma zamanında kapsayıcınız için kullanılabilecek ortam
+	 değişkenlerini ayarlamanıza olanak tanır. Statik bir değer veya bir "ARG"
+	 değeri kullanarak bir ortam değişkeninin değerini ayarlamak için "ENV"
+	 talimatını kullanabilirsiniz. Örneğin, Dockerfile dosyanıza aşağıdaki
+	 satırları ekleyebilirsiniz:
+	```
+	ARG KULLANICI
+	ENV KULLANICI=$KULLANICI
+	```
+	Bu, "USER" ortam değişkeninin değerini "USER" yapı bağımsız değişkeninin değerine ayarlar.
+	`ARG` veya `ENV` kullanarak ortam değişkenlerinizi tanımladıktan sonra, `${VAR}`
+	 sözdizimini kullanarak Dockerfile dosyanızda bunlara başvurabilirsiniz. Örneğin,
+	 sizin durumunuzda, sertifika dosyasını kopyalamak için aşağıdaki komutu kullanabilirsiniz:
+	```
+	cp /etc/ssl/certs/${USER}.crt /var/www/html/ ÇALIŞTIRIN
+	```
+
+	EN
+	If you want to use environment variables in your Dockerfile, you can use the
+	 `ARG` and `ENV` instructions.
+
+	The `ARG` instruction allows you to define a variable that can be passed to
+	 the build process using the `--build-arg` flag when running the `docker build`
+	 command. For example, you could add the following line to your Dockerfile:
+	```
+	ARG USER
+	```
+	Then, when building your image, you could pass the value of the `USER` variable
+	 using the `--build-arg` flag like this:
+	```
+	docker build --build-arg USER=gsever -t myimage .
+	```
+	The `ENV` instruction allows you to set environment variables that will be
+	 available to your container at runtime. You can use the `ENV` instruction
+	 to set the value of an environment variable using either a static value
+	 or the value of an `ARG`. For example, you could add the following lines
+	 to your Dockerfile:
+	```
+	ARG USER
+	ENV USER=$USER
+	```
+	This would set the value of the `USER` environment variable to the value
+	 of the `USER` build argument.
+	Once you have defined your environment variables using either `ARG` or
+	 `ENV`, you can reference them in your Dockerfile using the `${VAR}` syntax.
+	 For example, in your case, you could use the following command to copy
+	 the certificate file:
+	```
+	RUN cp /etc/ssl/certs/${USER}.crt /var/www/html/
+	```
+}
+
+Docker's Dangling and Intermediate images; <none>:<none>
+{
+	TR
+	Bağladığınız makaleye göre, Docker'daki `<none>:<none>` görüntüleri iki farklı
+	 görüntü türüne atıfta bulunabilir: ara görüntüler ve sarkan görüntüler¹.
+
+	Ara görüntüler, bir Docker görüntüsü oluşturma işlemi sırasında oluşturulur.
+	 Dockerfile'daki her talimat, görüntüde yeni bir katman oluşturur ve her
+	 katman bir ara görüntüdür. Bu ara görüntüler, "docker görüntüleri" komutu
+	 çalıştırıldığında varsayılan olarak gösterilmez, ancak tüm görüntüleri
+	 göstermek için "-a" bayrağı kullanılarak görülebilir. Ara imajlar herhangi
+	 bir disk alanı sorununa neden olmaz, ancak `docker images -a`¹ çalıştırılırken
+	 görmek kafa karıştırıcı olabilir.
+
+	Öte yandan sarkan görüntüler, artık herhangi bir kapsayıcı veya başka
+	 görüntü tarafından kullanılmayan veya referans verilmeyen görüntülerdir.
+	 Bunlar, eski sürümü düzgün bir şekilde temizlemeden görüntünün yeni bir
+	 sürümünü oluştururken ortaya çıkabilir. Sarkan görüntüler disk alanı
+	 sorunlarına neden olabilir ve `-f "dangling=true"` filtresi¹ ile `docker rmi`
+	 komutu kullanılarak kaldırılmalıdır.
+
+	NOTE: Bu <none>:<none> sarkan görüntüler değil, ara görüntü katmanlarıdır.
+	 Her Dockerfile adımında, ara katmanlar için yeniden kullanılabilirliği artıran,
+	 disk kullanımını azaltan ve her adımın önbelleğe alınmasına izin vererek docker
+	 yapılarını hızlandıran yeni bir karma oluşturulur.
+
+	EN
+	According to the article you linked, `<none>:<none>` images in Docker can
+	 refer to two different types of images: intermediate images and dangling images¹.
+
+	Intermediate images are created during the process of building a Docker image.
+	 Each instruction in a Dockerfile creates a new layer in the image, and each
+	 layer is an intermediate image. These intermediate images are not shown by
+	 default when running the `docker images` command, but can be seen by using
+	 the `-a` flag to show all images. Intermediate images do not cause any disk
+	 space problems, but they can be confusing to see when running `docker images -a`¹.
+
+	Dangling images, on the other hand, are images that are no longer being used
+	 or referenced by any containers or other images. These can occur when building
+	 a new version of an image without properly cleaning up the old version.
+	 Dangling images can cause disk space problems and should be removed using
+	 the `docker rmi` command with the `-f "dangling=true"` filter¹.
+
+	NOTE: These <none>:<none> are not dangling images, they are intermediate image layers.
+	 In each Dockerfile step a new hash is made for intermediate layers that increase re
+	 usability, decrease disk usage, and speed up docker builds by allowing each step
+	 to be cached.
+}
+
+tail -f <file>
+{
+	tail komutu, bir metin dosyasının son on satırını görüntüler.
+	 -f bayrağı ile birlikte kullanıldığında, tail komutu dosyayı canlı
+	 olarak izler ve dosyaya eklenen yeni satırları gerçek zamanlı
+	 olarak görüntüler.
+
+	Sample:
+		tail -f /var/log/apache2/access.log
+}
+
+ssl_protocols
+{
+	ssl_protocols direktifi, NGINX web sunucusunda hangi SSL/TLS sürümlerinin
+	 kullanılacağını belirler.
+	tlsv1.2 ve tlsv1.3, Transport Layer Security (TLS) protokolünün sürümlerini
+	 temsil eder. Bu sürümler, ağ iletişimlerinin güvenliğini sağlamak için
+	 tasarlanmış kriptografik protokollerdir.
+}
+
+/**
+* @links: https://docs.docker.com/network/
+*/
+Docker network types.
+{
+	Docker, "bridge", "host", "overlay", "ipvlan", "macvlan" ve "none" olmak
+	 uzere 6 çeşit ağ türlerini destekler.
+
+	1- "bridge" ağı: Bir köprü ağı, aynı köprü ağına bağlı kapsayıcıların o köprü
+	 ağına bağlı olmayan kapsayıcılardan izolasyon sağlarken iletişim kurmasına
+	 izin veren bir yazılım köprüsü kullanır. Docker'ı başlattığınızda, otomatik
+	 olarak varsayılan bir köprü ağı (köprü olarak da adlandırılır) oluşturulur
+	 ve aksi belirtilmedikçe yeni başlatılan kapsayıcılar buna bağlanır.
+	 Kullanıcı tanımlı özel köprü ağları da oluşturabilirsiniz.
+
+	2- "host" ağı: Ana bilgisayar ağının kullanılması, kapsayıcı ile
+	 Docker ana bilgisayarı arasındaki ağ yalıtımını kaldırır ve doğrudan
+	 ana bilgisayarın ağını kullanır.
+
+	3- "overlay" ağı: Yer paylaşımlı ağ sürücüsü, birden çok Docker arka plan
+	 programı ana bilgisayarı arasında dağıtılmış bir ağ oluşturur.
+	 Bu ağ, ana bilgisayara özgü ağların üzerinde (bindirmeler) yer alır ve
+	 kendisine bağlı kapların (sürü hizmet kapsayıcılar dahil) şifreleme
+	 etkinleştirildiğinde güvenli bir şekilde iletişim kurmasına olanak tanır.
+	 Docker, her paketin doğru Docker arka plan programı ana bilgisayarına
+	 ve doğru hedef kapsayıcısına¹ yönlendirilmesini şeffaf bir şekilde işler.
+
+	4- `ipvlan` ağı: Ipvlan ağları, size tek bir kapsayıcının arayüzüne birden
+	 çok IP adresi atama yeteneği verir.
+
+	5- `macvlan` ağı: Macvlan ağları, bir kapsayıcıya bir MAC adresi atamanıza
+	 izin vererek, onun ağınızda fiziksel bir cihaz olarak görünmesini sağlar.
+	 Docker arka plan programı, trafiği kapsayıcılara MAC adreslerine göre yönlendirir.
+
+	6- "none" ağı: Bu mod, kapsayıcı için herhangi bir IP yapılandırmaz ve
+	 dış ağa ve diğer kapsayıcılara erişimi yoktur. Geridöngü adresine
+	 sahiptir ve toplu işleri çalıştırmak için kullanılabilir.
+}
+
+How can i install/use 'Kali Linux'
+{
+	docker pull docker.io/kalilinux/kali-rolling
+	docker run --tty --interactive kalilinux/kali-rolling
+	docker container list --all
+	docker 
+}
+
+How can i install a certificate verification on Chrome etc.?
+{
+	apt update
+	apt full-upgrade -y
+	apt install -y libnss3-tools
+}
+
+Sample commands
+{
+	su -> for join root
+	123 -> root password
+	apt install docker.io
+	docker pull centos
+	docker run -d -t --name helloImCentos centos
+	docker exec -it helloImCentos bash
+	docker inspect helloImCentos
+	netstat -an | grep LISTEN
+	netstat -nlpt | grep docker
+}
