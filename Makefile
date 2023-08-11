@@ -139,7 +139,7 @@ cleansh:
 	@./clean.sh
 
 clean_dangling_images:
-	docker image prune --all --force
+	@docker image prune --all --force
 
 re:
 	@$(MAKE) fclean --no-print-directory
@@ -183,13 +183,47 @@ update_hosts:
 	fi
 # @sed -i '2s/^/127.0.0.0\tgsever.42.fr\n/' /etc/hosts
 
+#Linux sistemine SSH (Secure Shell) erişimi sağlamak için gerekli ayarları yapmayı amaçlar.
+setup_ssh: ## It aims to make the necessary settings to provide SSH (Secure Shell) access to the Linux system.
+	sudo usermod -aG sudo $(USER)
+	if ! sudo grep -q "$(USER) ALL=(ALL:ALL) ALL" /etc/sudores; then \
+		echo "$(USER) ALL=(ALL:ALL) ALL" | sudo tee -a /etc/sudoers; \
+	fi
+	sudo apt install openssh-server -y
+	sudo apt install ufw -y
+	sudo apt-get install wget -y
+	sudo service ssh restart
+	if ! sudo grep -q "Port 4242" /etc/ssh/sshd_config; then \
+		echo "Port 4242" | sudo tee -a /etc/ssh/sshd_config; \
+	fi
+	if ! sudo grep -q "PermitRootLogin yes" /etc/ssh/sshd_config; then \
+		echo "PermitRootLogin yes" | sudo tee -a /etc/ssh/sshd_config; \
+	fi
+	if ! sudo grep -q "PasswordAuthentication yes" /etc/ssh/sshd_config; then \
+		echo "PasswordAuthentication yes" | sudo tee -a /etc/ssh/sshd_config; \
+	fi
+	sudo systemctl restart sshd
+	sudo service ssh restart
+	sudo ufw enable
+	sudo ufw allow ssh
+	sudo ufw allow 4242
+	sudo ufw allow 3306
+	sudo ufw allow 80
+	sudo ufw allow 443
+	sudo ufw allow OpenSSH
+	sudo ufw enable
+	@echo "...then add port(4242) for Virtual Machine"
+	@echo "Now you can connect to your VM in this way from your own terminal: 'ssh user_name@localhost -p 4242' or ssh root@localhost -p 4242"
+	@echo "if you can't connect, check the 'known_hosts' file example: 'rm -rf /home/gsever/.ssh/known_hosts'"
+
+
 firstrun:
 	@echo "$(B_GREEN)FirstRun: Updating Debian OS.$(END)"
 	@apt update
 	@echo "$(B_GREEN)FirstRun: Upgrading Debian OS.$(END)"
 	@apt upgrade -y
-	@echo "$(B_GREEN)FirstRun: Installing: 'docker.io', 'docker-compose'.$(END)"
-	@apt install -y docker.io docker-compose
+	@echo "$(B_GREEN)FirstRun: Installing: 'docker.io', 'docker-compose', 'apt-utils'.$(END)"
+	@apt install -y docker.io docker-compose apt-utils
 	@echo "$(B_GREEN)FirstRun: Installing: 'vim', 'wget', 'curl', 'pv'.$(END)"
 	@apt install -y vim wget curl pv
 	@echo "$(B_GREEN)FirstRun: Installing: 'certutil' for trusted certificate.$(END)"
