@@ -229,4 +229,10 @@ firstrun:
 	@echo "$(B_GREEN)FirstRun: Installing: 'certutil' for trusted certificate.$(END)"
 	@apt install -y libnss3-tools
 
-.PHONY: all build up start stop down clean fclean cleansh clean_dangling_images re info container_info update_hosts firstrun
+.PHONY: all build up start stop down clean fclean cleansh clean_dangling_images re info container_info update_hosts setup_ssh firstrun
+
+# How can i transfer file with 'sftp' protocol local to virtual machine?
+# $> sftp gsever@localhost
+# $> <virtual_machine_password>
+# $> put <file> <destination>
+# $> get <file> <destination>
