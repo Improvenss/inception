@@ -51,12 +51,11 @@ else ifeq ($(UNAME), Darwin)
 endif
 # You can use --> man sysctl -> shell: sysctl -a | grep "hw.ncpu"
 
-.PHONY: all build up clean fclean cleansh re info
 
 # all:
 # 	@$(MAKE) build up -j $(NUMPROC) --no-print-directory
 
-all: build up
+all: build up clean_dangling_images
 
 build:
 	@echo "$(GREEN)BUILDING CONTAINER IMAGES 'build'$(X)"
@@ -98,15 +97,15 @@ down:
 	@docker-compose -f srcs/docker-compose.yml down
 	@echo $(OS) Closed with $(NUMPROC) cores!
 
-pvmake:
-	@docker-compose -f srcs/docker-compose.yml build nginx | pv -f -L 5 -s57 > /dev/null
-	@docker-compose -f srcs/docker-compose.yml build mariadb | pv -f -L 5 -s57 > /dev/null
-	@docker-compose -f srcs/docker-compose.yml build wordpress | pv -f -L 5 -s57 > /dev/null
-	@docker-compose -f srcs/docker-compose.yml build adminer | pv -f -L 5 -s57 > /dev/null
-	@docker-compose -f srcs/docker-compose.yml build redis | pv -f -L 5 -s57 > /dev/null
-	@docker-compose -f srcs/docker-compose.yml build ftp-server | pv -f -L 5 -s57 > /dev/null
-	@docker-compose -f srcs/docker-compose.yml build hugo | pv -f -L 5 -s57 > /dev/null
-	@docker-compose -f srcs/docker-compose.yml build static_page | pv -f -L 5 -s57 > /dev/null
+# pvmake:
+# 	@docker-compose -f srcs/docker-compose.yml build nginx | pv -f -L 5 -s57 > /dev/null
+# 	@docker-compose -f srcs/docker-compose.yml build mariadb | pv -f -L 5 -s57 > /dev/null
+# 	@docker-compose -f srcs/docker-compose.yml build wordpress | pv -f -L 5 -s57 > /dev/null
+# 	@docker-compose -f srcs/docker-compose.yml build adminer | pv -f -L 5 -s57 > /dev/null
+# 	@docker-compose -f srcs/docker-compose.yml build redis | pv -f -L 5 -s57 > /dev/null
+# 	@docker-compose -f srcs/docker-compose.yml build ftp-server | pv -f -L 5 -s57 > /dev/null
+# 	@docker-compose -f srcs/docker-compose.yml build hugo | pv -f -L 5 -s57 > /dev/null
+# 	@docker-compose -f srcs/docker-compose.yml build static_page | pv -f -L 5 -s57 > /dev/null
 
 clean:
 	@docker-compose -f srcs/docker-compose.yml down
@@ -138,6 +137,9 @@ fclean: clean
 cleansh:
 	@chmod 744 clean.sh
 	@./clean.sh
+
+clean_dangling_images:
+	docker image prune --all --force
 
 re:
 	@$(MAKE) fclean --no-print-directory
@@ -189,3 +191,5 @@ firstrun:
 	@apt install -y vim wget curl pv
 	@echo "$(B_GREEN)FirstRun: Installing: 'certutil' for trusted certificate.$(END)"
 	@apt install -y libnss3-tools
+
+.PHONY: all build up start stop down clean fclean cleansh clean_dangling_images re info container_info update_hosts firstrun

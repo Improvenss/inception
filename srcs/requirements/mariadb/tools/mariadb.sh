@@ -11,7 +11,7 @@ then
 	echo "Database already exists"
 else
 
-# Set root option so that connexion without root password is not possible
+# Set root option so that connection without root password is not possible
 
 mysql_secure_installation << _EOF_
 
@@ -26,7 +26,7 @@ _EOF_
 
 # mysql -uroot -p$MYSQL_ROOT_PASSWORD $MYSQL_DATABASE < /usr/local/bin/create_database.sql
 
-#Add a root user on 127.0.0.1 to allow remote connexion 
+#Add a root user on 127.0.0.1 to allow remote connection 
 #Flush privileges allow to your sql tables to be updated automatically when you modify it
 #mysql -uroot launch mysql command line client
 echo "GRANT ALL ON *.* TO 'root'@'%' IDENTIFIED BY '$MYSQL_ROOT_PASSWORD'; FLUSH PRIVILEGES;" | mysql -uroot
