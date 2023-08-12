@@ -66,3 +66,12 @@ CMD ["php-fpm8", "--nodaemonize"]
 # CMD ["php", "-S", "0.0.0.0:9000"]
 # #8080 portu adminer için ayrılıyor
 # #9000 portu adminer için ayrılıyor
+
+
+
+# NOTE: "apk" paket yöneticisindeki "--no-cache" bayrağı, paket
+# 	yöneticisinin paket dizininin yerel önbelleğini kullanmasını
+# 	engellemek için kullanılır ve bunun yerine, dizini ağdan 
+# 	almaya zorlar. Bu, paketleri kurmayı tamamladığınızda
+# 	`--update-cache` kullanma ve `/var/cache/apk/*` kaldırma ihtiyacını
+# 	ortadan kaldırdığından kapları küçük tutmak için yararlı olabilir.
