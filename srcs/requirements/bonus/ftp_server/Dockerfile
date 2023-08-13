@@ -41,6 +41,16 @@ ENTRYPOINT ["sh", "/tmp/server_ftp.sh"]
 # Installing ftp.
 # $> apt install ftp
 # $> ftp <server_ip_address_or_hostname>
+# How can i learn server ip address?
+# 	$> docker inspect <container_id> | grep "IPAddress"
+# root@gsever:/home/gsever/Desktop/inception# docker inspect 82cc9a64ca7f | grep "IPAddress"
+            # "SecondaryIPAddresses": null,
+            # "IPAddress": "",
+            #         "IPAddress": "172.18.0.7",
+# 	If Debian container;
+# 		$> docker exec -it <container_id> hostname -I
+# 	If Alpine container;
+# 		$> docker exec -it <container_id> ifconfig | grep "inet"
 # $> ftp 172.18.0.7
 # And enter FTP_USER.
 # Last enter FTP_PASS.
