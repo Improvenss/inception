@@ -75,3 +75,28 @@ CMD ["php-fpm8", "--nodaemonize"]
 # 	almaya zorlar. Bu, paketleri kurmayı tamamladığınızda
 # 	`--update-cache` kullanma ve `/var/cache/apk/*` kaldırma ihtiyacını
 # 	ortadan kaldırdığından kapları küçük tutmak için yararlı olabilir.
+
+# EN:
+# The command `adduser -u 82 -D -S -G www-data www-data` creates
+# 	a user named `www-data` and adds this user to the group named
+# 	`www-data`. This command contains the following options:
+# - `-u 82`: Sets the user's UID (User ID) to 82.
+# - `-D`: Does not create the user's home directory.
+# - `-S`: Does not set the user's login shell.
+# - `-G www-data`: Adds the user to the group named `www-data`.
+# This command is usually used to create a user for applications
+# 	running on web servers. For example, web servers like Apache
+# 	or Nginx usually run under a user named `www-data`.
+# TR:
+# `adduser -u 82 -D -S -G www-data www-data` komutu, `www-data`
+# 	adlı bir kullanıcı oluşturur ve bu kullanıcıyı `www-data`
+# 	adlı gruba ekler. Bu komut aşağıdaki seçenekleri içerir:
+# - `-u 82`: Kullanıcının UID'sini (Kullanıcı Kimliği) 82
+# 	olarak ayarlar.
+# - `-D`: Kullanıcının ev dizinini oluşturmaz.
+# - `-S`: Kullanıcının giriş kabuğunu ayarlamaz.
+# - `-G www-data`: Kullanıcıyı `www-data` adlı gruba ekler.
+# Bu komut genellikle, web sunucularında çalışan uygulamalar
+# 	için bir kullanıcı oluşturmak amacıyla kullanılır. Örneğin,
+# 	Apache veya Nginx gibi web sunucuları genellikle `www-data`
+# 	adlı bir kullanıcı altında çalışır.
