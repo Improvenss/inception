@@ -68,3 +68,11 @@ ENTRYPOINT ["sh", "/tmp/server_ftp.sh"]
 
 # These ftp is not safe. If you want to safe you need to use;
 # SCP(Secure Copy Protocol) or SFTP(SSH File Transfer Protocol)
+
+# OR
+
+# How can i check services is running?
+# If 'rc-service' command is not found;
+# $> apk add openrc --no-cache
+# After checking service status.
+# $> rc-service vsftpd status
