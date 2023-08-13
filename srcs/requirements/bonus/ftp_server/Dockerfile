@@ -65,3 +65,6 @@ ENTRYPOINT ["sh", "/tmp/server_ftp.sh"]
 # Remote system type is UNIX.
 # Using binary mode to transfer files.
 # ftp>
+
+# These ftp is not safe. If you want to safe you need to use;
+# SCP(Secure Copy Protocol) or SFTP(SSH File Transfer Protocol)
