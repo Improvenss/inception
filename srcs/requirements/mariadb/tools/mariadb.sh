@@ -24,6 +24,8 @@ Y
 Y
 _EOF_
 
+# @link: https://www.digitalocean.com/community/tutorials/how-to-allow-remote-access-to-mysql
+
 # mysql -uroot -p$MYSQL_ROOT_PASSWORD $MYSQL_DATABASE < /usr/local/bin/create_database.sql
 
 #Add a root user on 127.0.0.1 to allow remote connection 
@@ -41,6 +43,8 @@ echo "CREATE DATABASE IF NOT EXISTS $MYSQL_DATABASE; GRANT ALL ON $MYSQL_DATABAS
 # # mysql -uroot -p$MYSQL_ROOT_PASSWORD $MYSQL_DATABASE < /usr/local/bin/wordpress.sql
 # 	echo "FINISHED BRUH";
 # fi
+
+# @link: https://www.interserver.net/tips/kb/import-export-databases-mysql-command-line/
 
 #Import database in the mysql command line
 mysql -uroot -p$MYSQL_ROOT_PASSWORD $MYSQL_DATABASE < /usr/local/bin/wordpress.sql

@@ -161,8 +161,11 @@ info:
 	@echo "$(PURPLE)====== VOLUMES ======$(END)"
 	@docker volume ls
 
-container_info:
+compose_containers:
 	@docker-compose -f ./srcs/docker-compose.yml ps -a
+
+compose_images:
+	@docker-compose -f ./srcs/docker-compose.yml images
 
 # update_ssl:
 # 	@cp /home/$(USER)/data/wordpress/gsever.crt /etc/ssl/certs/

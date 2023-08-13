@@ -53,6 +53,14 @@ CMD ["/usr/local/bin/create_wordpress.sh", "/usr/sbin/php-fpm7.3", "-F"]
 # Bu Dockerfile, bir Debian Buster tabanlı PHP-FPM (FastCGI Process Manager)
 # 	görüntüsü oluşturur.
 # 	PHP-FPM, PHP betiklerini işlemek için kullanılan bir FastCGI uygulamasıdır.
+# Web sitelerinin yoğun yüklerini kaldırabilmesine olanak tanır. PHP-FPM, bu
+# 	işlemi gerçekleştirmek için havuzlar (PHP beklentilerine yanıt verebilen
+# 	çalıştırma) oluşturur. PHP-FPM, çok kullanıcılı PHP ortamları için
+# 	geleneksel CGI yönteminden, örneğin SUPHP'den daha hızlıdır.
+# FastCGI ise, web sunucuları ve uygulama sunucuları arasında iletişim kurmak
+# 	için kullanılan bir protokoldür. FastCGI, CGI (Common Gateway Interface)
+# 	protokolünün bir işleyişidir ve web sunucularının dinamik içeriği daha
+# 	hızlı işlemesine yardımcı olur.
 
 # `RUN mkdir /run/php` komutu, `/run/php` dizinini oluşturur. Bu dizin,
 # 	PHP-FPM tarafından kullanılır. Örneğin, PHP-FPM bu dizinde PID

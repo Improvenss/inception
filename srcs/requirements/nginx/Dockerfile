@@ -1,3 +1,6 @@
+# @link: http://nginx.org/en/docs/beginners_guide.html
+# @note: Nginx's tutorial.
+
 FROM	debian:buster
 
 ENV USER=gsever

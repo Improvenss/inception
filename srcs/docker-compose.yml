@@ -1,7 +1,12 @@
 # ---- LINKS ----
 # @link: https://docs.docker.com/network/
 # @link: progress bar: https://betterstack.com/community/questions/how-to-debug-failed-docker-build-command/
-# @note: 
+
+# @link: https://www.howtoforge.com/tutorial/dockerizing-lemp-stack-with-docker-compose-on-ubuntu/
+# @note: These all name calling(LEMP Stack: L=Linux, E=Nginx, M=Mariadb, P=PHP).
+
+# @link: https://www.educative.io/blog/docker-compose-tutorial
+# @note: Docker Compose tutorial.
 # ---------------
 
 version: "3"
@@ -152,9 +157,9 @@ services: # For containers(services).
     container_name: ftp-server
     build: ./requirements/bonus/ftp_server/
     env_file: .env
-    environment:
-      FTP_USR: ${FTP_USR}
-      FTP_PWD: ${FTP_PWD}
+    # environment:
+      # FTP_USR: ${FTP_USR}
+      # FTP_PWD: ${FTP_PWD}
     # command: bash -c "docker-compose-progress.sh"
     volumes:
       - wordpress_data:/var/www/html
