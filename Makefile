@@ -236,3 +236,7 @@ firstrun:
 # $> <virtual_machine_password>
 # $> put <file> <destination>
 # $> get <file> <destination>
+#
+# How can i check TLSv1.2 and TLSv1.3 is working?
+# openssl s_client -connect localhost:443 -tls1_2
+# openssl s_client -connect localhost:443 -tls1_3

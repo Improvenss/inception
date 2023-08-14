@@ -36,6 +36,10 @@ RUN cp /etc/ssl/certs/${USER}.crt /var/www/html/
 # Start nginx
 CMD ["nginx", "-g", "daemon off;"]
 
+# How can i check TLSv1.2 and TLSv1.3 is working?
+# openssl s_client -connect localhost:443 -tls1_2
+# openssl s_client -connect localhost:443 -tls1_3
+
 
 # openssl req: OpenSSL aracıyla bir sertifika talebi oluşturmayı sağlar.
 # -newkey rsa:4096: Yeni bir RSA 4096 bit uzunluğunda anahtar çifti oluşturulmasını belirtir.
