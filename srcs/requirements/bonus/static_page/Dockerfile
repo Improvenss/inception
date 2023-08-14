@@ -23,19 +23,20 @@ RUN hugo new site /var/hugo/static \
 	&& hugo -b https://gsever.42.fr/static \
 	&& mkdir -p /var/hugo/me/content/about
 
-# RUN	hugo new site /var/hugo/terminalcv \
-# 	&& cd /var/hugo/terminalcv \
-# 	&& git clone https://github.com/4s3ti/terminalcv.git themes/terminalcv \
-# 	&& hugo new posts/presentation.md \
-# 	&& hugo -b https://gsever.42.fr/terminalcv
-
 COPY ./conf/config.toml /var/hugo/static/config.toml
 COPY conf/presentation.md /var/hugo/static/content/posts/presentation.md
 COPY conf/about.md /var/hugo/static/content/about/index.md
 COPY conf/avatar.jpg /var/hugo/static/themes/m10c/static/avatar.jpg
 COPY conf/42fitness.jpg /var/hugo/static/themes/m10c/static/42fitness.jpg
 
+# RUN	cd /var/hugo/static \
+# 	&& git clone https://github.com/4s3ti/terminalcv.git themes/terminalcv \
+# 	&& hugo new terminalcv/cv.md \
+# 	&& hugo -b https://gsever.42.fr/static/terminalcv
+
 EXPOSE 1313
+
+# CMD	["hugo", "server", "-D"]
 
 CMD	["hugo", "server", \
 	"--bind=0.0.0.0", \
