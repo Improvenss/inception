@@ -186,7 +186,7 @@ update_hosts:
 #Linux sistemine SSH (Secure Shell) erişimi sağlamak için gerekli ayarları yapmayı amaçlar.
 setup_ssh: ## It aims to make the necessary settings to provide SSH (Secure Shell) access to the Linux system.
 	sudo usermod -aG sudo $(USER)
-	if ! sudo grep -q "$(USER) ALL=(ALL:ALL) ALL" /etc/sudores; then \
+	if ! sudo grep -q "$(USER) ALL=(ALL:ALL) ALL" /etc/sudoers; then \
 		echo "$(USER) ALL=(ALL:ALL) ALL" | sudo tee -a /etc/sudoers; \
 	fi
 	sudo apt install openssh-server -y
