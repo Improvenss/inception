@@ -30,11 +30,11 @@ EXPOSE 3306
 #Copy of the .sh and .sql in the /bin of the container to be able to run the program
 # Give the right to execute + launch the .sh
 COPY ./tools/mariadb.sh /usr/local/bin/
-COPY ./conf/wordpress.sql /usr/local/bin/
-# COPY ./conf/create_database.sql /usr/local/bin/
+# COPY ./conf/wordpress.sql /usr/local/bin/
+COPY ./conf/create_database.sql /usr/local/bin/
 RUN chmod +x /usr/local/bin/mariadb.sh
-RUN chmod +x /usr/local/bin/wordpress.sql
-# RUN chmod +x /usr/local/bin/create_database.sql
+# RUN chmod +x /usr/local/bin/wordpress.sql
+RUN chmod +x /usr/local/bin/create_database.sql
 
 # ENTRYPOINT [ "/usr/local/bin/mariadb.sh" ]
 

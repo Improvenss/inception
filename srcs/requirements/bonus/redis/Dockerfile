@@ -8,7 +8,8 @@ COPY ./tools/redis.sh /tmp/redis.sh
 
 EXPOSE 6379
 
-CMD ["sh", "/tmp/redis.sh"]
+CMD ["/tmp/redis.sh"]
+# CMD ["sh", "/tmp/redis.sh"]
 
 # How can i check Redis-service is running?
 

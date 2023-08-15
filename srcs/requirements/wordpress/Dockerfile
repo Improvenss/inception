@@ -49,9 +49,11 @@ WORKDIR /var/www/html/
 # We expose the 9000 port.
 EXPOSE 9000
 
+ENTRYPOINT [ "/usr/local/bin/create_wordpress.sh" ]
+
 # Launch PHP FPM in foreground and ignore deamonize from conf file (-F)
 # CMD ["/usr/sbin/php-fpm7.3", "-F"]
-CMD ["/usr/local/bin/create_wordpress.sh", "/usr/sbin/php-fpm7.3", "-F"]
+CMD [ "/usr/sbin/php-fpm7.3", "-F" ]
 
 
 
