@@ -29,6 +29,13 @@ RUN curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli
 COPY ./conf/www.conf /etc/php/7.3/fpm/pool.d/
 
 # Create the folder to enable php start.
+# Bu dizin, PHP-FPM (FastCGI Process Manager) tarafından çalışma zamanında
+# 	oluşturulan soket dosyaları ve diğer geçici dosyalar için kullanılır.
+# WordPress Docker imajında bu komutu kullanmanızın nedeni, PHP-FPM'nin düzgün
+# 	çalışabilmesi için gerekli dizin yapısını oluşturmak ve imajın çalışma
+# 	zamanında PHP-FPM'nin gereksinim duyduğu yapıları içermesini sağlamaktır.
+# Bu, WordPress uygulamasının hızlı ve stabil bir şekilde çalışmasını
+# 	sağlamak için önemlidir.
 RUN mkdir -p /run/php
 
 # We copy the script, give the right to launch it in local on our computer.

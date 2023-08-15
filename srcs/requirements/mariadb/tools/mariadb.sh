@@ -47,7 +47,7 @@ echo "CREATE DATABASE IF NOT EXISTS $MYSQL_DATABASE; GRANT ALL ON $MYSQL_DATABAS
 # @link: https://www.interserver.net/tips/kb/import-export-databases-mysql-command-line/
 
 #Import database in the mysql command line
-mysql -uroot -p$MYSQL_ROOT_PASSWORD $MYSQL_DATABASE < /usr/local/bin/wordpress.sql
+# mysql -uroot -p$MYSQL_ROOT_PASSWORD $MYSQL_DATABASE < /usr/local/bin/wordpress.sql
 
 fi
 
