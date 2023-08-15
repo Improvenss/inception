@@ -124,8 +124,8 @@ clean:
 fclean: clean
 # docker rmi -f $$(docker images -qa) 2>/dev/null
 # @docker image prune -f 2>/dev/null
-# docker volume rm $$(docker volume ls -q) 2>/dev/null
-# docker volume prune -f
+	@docker volume rm $$(docker volume ls -q) 2>/dev/null
+# @docker volume prune -f 2>/dev/null
 # docker network rm $$(docker network ls -q) 2>/dev/null
 # @docker network prune -f
 # @docker system prune -a --volume --force 2>/dev/null
@@ -175,10 +175,10 @@ compose_images:
 # @certutil -A -n "gsever" -t "TCu,Cu,Tu" -i "/home/gsever/data/wordpress/gsever.crt" -d sql:$(HOME)/.mozilla/firefox/*default
 
 update_hosts:
-	@if grep -q "127.0.0.0	$(USER).42.fr" /etc/hosts; then\
-		echo "$(YELLOW)Host Already Exist: /etc/hosts: $(B_YELLOW)'127.0.0.0 $(USER).42.fr'$(END)";\
+	@if grep -q "127.0.0.1	$(USER).42.fr" /etc/hosts; then\
+		echo "$(YELLOW)Host Already Exist: /etc/hosts: $(B_YELLOW)'127.0.0.1 $(USER).42.fr'$(END)";\
 	else\
-		sudo sed -i '2i127.0.0.0\t$(USER).42.fr' /etc/hosts;\
+		sudo sed -i '2i127.0.0.1\t$(USER).42.fr' /etc/hosts;\
 		echo "$(B_GREEN)Adding 'gsever.42.fr' host to /etc/hosts inside.$(END)";\
 	fi
 # @sed -i '2s/^/127.0.0.0\tgsever.42.fr\n/' /etc/hosts
