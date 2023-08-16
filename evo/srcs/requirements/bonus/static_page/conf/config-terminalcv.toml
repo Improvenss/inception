@@ -1,0 +1,5 @@
+#baseURL = "https://gsever.42.fr/static/terminalcv"
+title = "Terminal CV"
+theme = "terminalcv"
+paginate = 8
+canonifyURLs = true
